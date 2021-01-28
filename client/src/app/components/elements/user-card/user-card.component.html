@@ -1,6 +1,55 @@
-<div class="user-card">
+<div class="card-button">
   <a routerLink="/borrow/lend/{{ itemId }}/{{ user.id }}">
-    <p>{{ user.username }}</p>
-    <p>{{ user.location }}</p>
+    <div class="user-card">
+      <div
+        [ngClass]="{ 'rotate-180': showToBorrowList }"
+        class="user-card__front user-card__size"
+      >
+        <div class="user-card__username">
+          <span class="bold">Username: </span> <span> {{ user.username }}</span>
+        </div>
+        <div class="user-card__location">
+          <span class="bold">Location: </span> <span> {{ user.location }}</span>
+        </div>
+        <p *ngIf="matchingItemsNo !== 1">
+          {{
+            "You are lending " +
+              matchingItemsNo +
+              " games this user is interested in."
+          }}
+        </p>
+        <p *ngIf="matchingItemsNo === 1">
+          {{
+            "You are lending " +
+              matchingItemsNo +
+              " game this user is interested in."
+          }}
+        </p>
+      </div>
+      <div
+        [ngClass]="{ 'rotate-0': showToBorrowList }"
+        class="user-card__back user-card__size"
+      >
+        <ul *ngIf="user.toBorrowList.length !== 0">
+          <li *ngFor="let item of user.toBorrowList">
+            <span>{{ item.title + " " }}</span>
+            <span
+              class="green"
+              *ngIf="loggedUserToLendListIds.includes(item.id)"
+              ><fa-icon [icon]="check"></fa-icon>
+            </span>
+            <span class="red" *ngIf="!loggedUserToLendListIds.includes(item.id)"
+              ><fa-icon [icon]="cross"></fa-icon>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </a>
+  <button *ngIf="!showToBorrowList" (click)="toggleShowToBorrowList()">
+    {{ "Check to borrow list" }}
+  </button>
+  <button *ngIf="showToBorrowList" (click)="toggleShowToBorrowList()">
+    {{ "Hide to borrow list" }}
+  </button>
 </div>

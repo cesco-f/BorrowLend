@@ -1,28 +1,33 @@
 <div class="navbar">
   <div class="navbar__logo">
-    <img src="../../assets/logo/circle.png" alt="circle-logo" />
-    <img src="../../assets/logo/hand-1.png" alt="hand-1-logo" />
-    <img src="../../assets/logo/hand-2.png" alt="hand-2-logo" />
+    <img
+      class="navbar__logo-img"
+      src="../../assets/logo/borrowlend-logo.png"
+      alt="complete-logo"
+    />
     <img
       class="navbar__logo-text"
       src="../../assets/logo/borrowlend.png"
       alt="borrowlend-logo"
     />
   </div>
-  <div class="navbar__actions">
-    <ul *ngIf="user">
+  <div class="navbar__actions" *ngIf="user">
+    <ul>
       <li><a [routerLink]="['/search']">Search</a></li>
       <li><a [routerLink]="['/borrow']">Borrow</a></li>
-      <li><a [routerLink]="['/requests']">Requests</a></li>
+      <li><a [routerLink]="['/requests']">Exchanges</a></li>
+      <li><a [routerLink]="['/my-lists']">My Lists</a></li>
     </ul>
   </div>
-  <div class="navbar__user">
-    <ul *ngIf="user">
-      <li>
-        <a (click)="logout()" [routerLink]="['/login']">{{
-          "Logout " + user.username
-        }}</a>
-      </li>
+  <div class="navbar__actions" *ngIf="!user">
+    <ul>
+      <li><a [routerLink]="['/login']">Create account</a></li>
+      <li><a [routerLink]="['/login']">Log in</a></li>
     </ul>
   </div>
+  <div class="navbar__user" *ngIf="user">
+    <p>{{ "Hi, " + user.username }}</p>
+    <button (click)="logout()">Log out</button>
+  </div>
+  <div class="navbar__user" *ngIf="!user"></div>
 </div>

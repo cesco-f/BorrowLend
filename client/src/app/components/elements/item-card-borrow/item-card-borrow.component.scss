@@ -1,18 +1,59 @@
+@import "../../../../variables.scss";
+
 .item-card {
-  font-size: 3rem;
   display: flex;
-  padding: 1rem;
-  border: 1px solid black;
-  border-radius: 3px;
   justify-content: space-between;
   width: 60rem;
-  p {
-    align-self: center;
+  border: 1px solid $color-black;
+  border-radius: 1rem;
+  overflow: hidden;
+  height: 18rem;
+  transition: linear 0.1s;
+  background-color: $color-white;
+
+  &__img {
     flex: 1;
+    img {
+      width: 15rem;
+      height: 20rem;
+    }
   }
-  img {
-    height: 30rem;
-    width: 30rem;
-    flex: 1;
+  &__info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 3;
+    font-size: 2.3rem;
+    text-align: center;
+    color: $color-black;
+
+    &-title {
+      flex: 1;
+      font-weight: 700;
+    }
+
+    &-rating {
+      flex: 1;
+      align-self: center;
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      color: $color-primary;
+      & > span {
+        display: inline-block;
+        position: relative;
+        width: 1.1em;
+      }
+      & > span:before,
+      span ~ span:before {
+        content: "\2605";
+        position: absolute;
+      }
+    }
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
   }
 }

@@ -6,8 +6,9 @@
   "scripts": {
     "lint": "cd client && ng lint",
     "server": "cd server && npm run start:dev",
-    "client": "cd client && ng serve -o"
-  },
+		"client": "cd client && ng serve -o",
+		"e2e": "cypress open"
+	},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cesco-f/BorrowLend.git"

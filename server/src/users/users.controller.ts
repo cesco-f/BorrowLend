@@ -87,4 +87,10 @@ export class UsersController {
     id = Number(id);
     return this.usersService.remToToLendList(id, itemId);
   }
+
+  @Put('changeEmail/:id')
+  changeEmail(@Param('id') id: number, @Body() body: any) {
+    id = Number(id);
+    return this.usersService.changeEmail(id, body.email);
+  }
 }

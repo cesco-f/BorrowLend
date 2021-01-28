@@ -1,15 +1,83 @@
-.exchange-card-borrow {
+@import "../../../../variables.scss";
+
+.exchange-card {
+  border: 1px solid $color-black;
+  border-radius: 1rem;
+  background-color: $color-white;
   display: flex;
   flex-direction: column;
-  &__users {
+  width: 100rem;
+  padding: 1rem;
+
+  &-users {
     display: flex;
-    justify-content: space-around;
-    img {
-      width: 20rem;
-      height: 20rem;
+    font-size: 2rem;
+    padding: 1rem;
+    justify-content: space-between;
+    height: 43rem;
+
+    &__user {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 3;
+      padding: 1rem;
+
+      img {
+        align-self: center;
+        width: 15rem;
+        height: 20rem;
+        border-radius: 1rem;
+      }
+    }
+
+    &__darrow {
+      flex: 1;
+      font-size: 15rem;
     }
   }
 
   button {
+    width: 10rem;
+    align-self: center;
+    outline: none;
+    border: none;
+    color: $color-white;
+    background-color: red;
+    border-radius: 3px;
+    padding: 1rem;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0.8rem 1rem rgba($color-black, 0.2);
+    }
+    &:active {
+      transform: translateY(0.2rem);
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+    }
   }
+
+  &__info {
+    align-self: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__status {
+    align-self: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+}
+
+.accepted {
+  color: green;
+}
+
+.pending {
+  color: orange;
+}
+
+.rejected {
+  color: red;
 }

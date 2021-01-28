@@ -3,9 +3,9 @@ export interface Exchange {
   accepted: boolean;
   isActiveBorr: boolean;
   isActiveLend: boolean;
-  itemBorrowedId: number;
-  itemLentId: number;
-  userBorrowingId: number;
-  userLendingId: number;
+  itemBorrowedId?: number;
+  itemLentId?: number;
+  userBorrowingId?: number;
+  userLendingId?: number;
   createdAt: Date;
 }

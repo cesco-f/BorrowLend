@@ -20,7 +20,7 @@
     &-text {
       left: 50%;
       transform: translate(-50%, 110%);
-      animation: moveInBottom 3s ease-out infinite;
+      animation: moveInBottom 3s ease-out 0.1s infinite;
       animation-fill-mode: backwards;
     }
 

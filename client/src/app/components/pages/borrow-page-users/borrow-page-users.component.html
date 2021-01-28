@@ -1,5 +1,11 @@
-<app-user-card
-  *ngFor="let user of usersLending"
-  [user]="user"
-  [itemId]="itemId"
-></app-user-card>
+<div class="borrow-page-users" *ngIf="usersLending">
+  <p class="no-user" *ngIf="usersLending.length === 0">
+    No user is lending this game at the moment
+  </p>
+  <p *ngIf="usersLending.length !== 0">{{ "Users lending " + itemTitle }}</p>
+  <app-user-card
+    *ngFor="let user of usersLending"
+    [user]="user"
+    [itemId]="itemId"
+  ></app-user-card>
+</div>

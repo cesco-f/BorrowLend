@@ -1,24 +1,68 @@
+@import "../../../../variables.scss";
+
 .item-card {
-  font-size: 3rem;
   display: flex;
-  padding: 1rem;
-  border: 1px solid black;
-  border-radius: 3px;
   justify-content: space-between;
   width: 60rem;
-  p {
-    align-self: center;
+  border: 1px solid $color-black;
+  border-radius: 1rem;
+  overflow: hidden;
+  height: 20rem;
+  background-color: $color-white;
+
+  &__img {
     flex: 1;
+    img {
+      width: 15rem;
+      height: 20rem;
+    }
   }
-  select {
-    align-self: center;
-    height: 3rem;
-    width: 10rem;
-    flex: 1;
-  }
-  img {
-    height: 30rem;
-    width: 30rem;
-    flex: 1;
+  &__info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 3;
+    font-size: 2.3rem;
+    text-align: center;
+
+    &-title {
+      flex: 1;
+      font-weight: 700;
+    }
+
+    &-rating {
+      flex: 1;
+      align-self: center;
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      color: $color-primary;
+      & > span {
+        display: inline-block;
+        position: relative;
+        width: 1.1em;
+      }
+      & > span:before,
+      span ~ span:before {
+        content: "\2605";
+        position: absolute;
+      }
+    }
+
+    &-drop {
+      align-self: center;
+      select {
+        width: 13rem;
+        font-size: 2rem;
+        padding: 0.5rem;
+        outline: none;
+        border-radius: 1rem;
+
+        &:focus {
+          box-shadow: 0 0 3pt 2pt $color-primary;
+          border: none;
+        }
+      }
+    }
   }
 }

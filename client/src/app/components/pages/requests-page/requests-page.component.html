@@ -1,10 +1,13 @@
-<div *ngFor="let exchange of exchanges">
-  <app-exchange-card-lend
-    *ngIf="exchange.userBorrowing.id !== user.id"
-    [exchange]="exchange"
-  ></app-exchange-card-lend>
-  <app-exchange-card-borrow
-    *ngIf="exchange.userBorrowing.id === user.id"
-    [exchange]="exchange"
-  ></app-exchange-card-borrow>
+<div class="requests-page">
+  <p *ngIf="exchanges.length === 0">You don't have any exchanges</p>
+  <div *ngFor="let exchange of exchanges">
+    <app-exchange-card-lend
+      *ngIf="exchange.userBorrowing.id !== user.id"
+      [exchange]="exchange"
+    ></app-exchange-card-lend>
+    <app-exchange-card-borrow
+      *ngIf="exchange.userBorrowing.id === user.id"
+      [exchange]="exchange"
+    ></app-exchange-card-borrow>
+  </div>
 </div>

@@ -1,6 +1,12 @@
-<app-item-card-lend
-  *ngFor="let item of matchingItems"
-  [item]="item"
-  [userLendId]="userLendingId"
-  [itemToBorrowId]="itemBorrowedId"
-></app-item-card-lend>
+<div *ngIf="matchingItems" class="borrow-page-lend">
+  <p *ngIf="matchingItems.length === 0">No matching items</p>
+  <p *ngIf="matchingItems.length !== 0">
+    {{ userLendingUsername + "'s To Borrow list" }}
+  </p>
+  <app-item-card-lend
+    *ngFor="let item of matchingItems"
+    [item]="item"
+    [userLendId]="userLendingId"
+    [itemToBorrowId]="itemBorrowedId"
+  ></app-item-card-lend>
+</div>

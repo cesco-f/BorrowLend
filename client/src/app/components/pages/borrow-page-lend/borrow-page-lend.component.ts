@@ -15,6 +15,7 @@ export class BorrowPageLendComponent implements OnInit {
   itemBorrowedId: number;
   matchingItems: Item[];
   user$ = this.store.pipe(select('user'));
+  userLendingUsername: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +31,7 @@ export class BorrowPageLendComponent implements OnInit {
         this.userService
           .getUserById(this.userLendingId)
           .subscribe((userLending) => {
+            this.userLendingUsername = userLending.username;
             // Get all the items that are in the to borrow list of the user lending and in the to lend list of the user borrowing
             this.matchingItems = userLending.toBorrowList.filter((a) =>
               user.toLendList.some((b) => a.id === b.id)

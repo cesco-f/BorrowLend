@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiUrl } from './apiUrl';
 import { Exchange } from '../models/exchange';
@@ -13,8 +13,8 @@ export class ExchangeService {
 
   constructor(private http: HttpClient) {}
 
-  createExchange(exchange: any): Observable<Exchange> {
-    return this.http.post<Exchange>(`${this.userUrl}`, exchange);
+  createExchange(exchange: any): Observable<ExchangeComplete> {
+    return this.http.post<ExchangeComplete>(`${this.userUrl}`, exchange);
   }
 
   getExchange(id: number): Observable<ExchangeComplete> {

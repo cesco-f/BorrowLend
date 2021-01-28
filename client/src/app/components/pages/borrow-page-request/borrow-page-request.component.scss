@@ -1,15 +1,60 @@
-.borrow-page-request {
+@import "../../../../variables.scss";
+
+.request-button {
   display: flex;
   flex-direction: column;
-  &__users {
+  align-items: center;
+
+  button {
+    width: 10rem;
+    align-self: center;
+    outline: none;
+    border: none;
+    color: $color-white;
+    background-color: $color-primary;
+    border-radius: 3px;
+    padding: 1rem;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0.8rem 1rem rgba($color-black, 0.2);
+    }
+    &:active {
+      transform: translateY(0.2rem);
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+    }
+  }
+}
+
+.borrow-page-request {
+  display: flex;
+  font-size: 2rem;
+  border: 1px solid $color-black;
+  border-radius: 1rem;
+  padding: 1rem;
+  justify-content: space-between;
+  height: 43rem;
+  margin-bottom: 4rem;
+  width: 85%;
+  background-color: $color-white;
+  margin-top: 3rem;
+
+  &__user {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 3;
+    padding: 3rem;
+
     img {
-      width: 20rem;
+      align-self: center;
+      width: 15rem;
       height: 20rem;
+      border-radius: 1rem;
     }
   }
 
-  button {
+  &__darrow {
+    flex: 1;
+    font-size: 15rem;
   }
 }

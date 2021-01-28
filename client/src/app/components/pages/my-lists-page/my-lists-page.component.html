@@ -1,0 +1,22 @@
+<div class="my-lists-page" *ngIf="user">
+  <div class="my-lists-page__list">
+    <p>To Borrow List</p>
+    <p *ngIf="user.toBorrowList.length === 0">
+      No items in your to borrow list
+    </p>
+    <app-item-card-search
+      *ngFor="let item of user.toBorrowList"
+      [user]="user"
+      [item]="item"
+    ></app-item-card-search>
+  </div>
+  <div class="my-lists-page__list">
+    <p>To Lend List</p>
+    <p *ngIf="user.toLendList.length === 0">No items in your to lend list</p>
+    <app-item-card-search
+      *ngFor="let item of user.toLendList"
+      [user]="user"
+      [item]="item"
+    ></app-item-card-search>
+  </div>
+</div>

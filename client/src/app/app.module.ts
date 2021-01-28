@@ -23,6 +23,8 @@ import { BorrowPageRequestComponent } from './components/pages/borrow-page-reque
 import { RequestsPageComponent } from './components/pages/requests-page/requests-page.component';
 import { ExchangeCardBorrowComponent } from './components/elements/exchange-card-borrow/exchange-card-borrow.component';
 import { ExchangeCardLendComponent } from './components/elements/exchange-card-lend/exchange-card-lend.component';
+import { MyListsPageComponent } from './components/pages/my-lists-page/my-lists-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { ExchangeCardLendComponent } from './components/elements/exchange-card-l
     RequestsPageComponent,
     ExchangeCardBorrowComponent,
     ExchangeCardLendComponent,
+    MyListsPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { ExchangeCardLendComponent } from './components/elements/exchange-card-l
       items: itemsReducer,
     }),
     HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

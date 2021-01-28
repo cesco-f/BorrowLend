@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { setUser } from 'src/app/actions/users.actions';
 import { AppState } from 'src/app/app.state';
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   user: User;
   user$ = this.store.pipe(select('user'));
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
     this.user$.subscribe((user) => {
@@ -23,5 +24,6 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     this.store.dispatch(setUser(null));
+    this.router.navigate(['login']);
   }
 }

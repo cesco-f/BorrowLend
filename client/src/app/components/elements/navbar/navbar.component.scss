@@ -1,37 +1,75 @@
 @import "../../../../variables.scss";
-
+img {
+  height: 6rem;
+}
 .navbar {
-  height: $navbar-height;
-  font-size: 2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  height: $navbar-height;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-black;
+  padding: 1rem;
+  font-size: 2rem;
+  align-items: center;
 
   &__logo {
-    position: relative;
-    img {
-      position: absolute;
-      height: 6rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    &-img {
+      flex: 1;
     }
     &-text {
-      left: 6rem;
+      flex: 2;
     }
   }
 
-  ul {
-    list-style: none;
-    width: 80%;
-    margin: 0 auto;
+  &__actions {
+    flex: 5;
+    ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      li {
+        padding: 1rem;
+        &:hover {
+          border-bottom: 1px solid $color-primary;
+        }
+        &:active {
+          border-bottom: 1px solid $color-primary;
+          transform: translateY(0.2rem);
+        }
+      }
+    }
+  }
+
+  &__user {
+    flex: 1;
+    color: $color-primary;
     display: flex;
-    justify-content: space-between;
-    li {
-      text-align: center;
+    justify-content: space-around;
+
+    p {
       padding: 1rem;
+    }
+
+    button {
+      width: 10rem;
+      align-self: center;
+      outline: none;
+      border: none;
+      color: $color-white;
+      background-color: $color-primary;
+      border-radius: 3px;
+      padding: 1rem;
+      font-size: 2rem;
+      cursor: pointer;
       &:hover {
-        border-bottom: 1px solid $color-primary;
+        box-shadow: 0 0.8rem 1rem rgba($color-black, 0.2);
       }
       &:active {
-        border-bottom: 1px solid $color-primary;
         transform: translateY(0.2rem);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
       }
     }
   }
@@ -40,16 +78,5 @@
 @media (max-width: 750px) {
   .navbar__logo-text {
     display: none;
-  }
-}
-
-@media (max-width: 500px) {
-  .navbar {
-    font-size: 1.2rem;
-    &__logo {
-      img {
-        height: 4rem;
-      }
-    }
   }
 }

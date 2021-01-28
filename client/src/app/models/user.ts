@@ -7,8 +7,8 @@ export interface User {
   password: string;
   location: string;
   email: string;
-  exchangesBorr: Exchange[];
-  exchangesLend: Exchange[];
-  toBorrowList: Item[];
-  toLendList: Item[];
+  exchangesBorr?: Exchange[];
+  exchangesLend?: Exchange[];
+  toBorrowList?: Item[];
+  toLendList?: Item[];
 }

@@ -1,17 +1,32 @@
 <div class="item-card" *ngIf="item">
-  <p>{{ item.title }}</p>
-  <img src="{{ item.img }}" alt="item-image" />
-  <div *ngIf="this.itemState === 'exchange'">Already in an exchange</div>
-  <select
-    *ngIf="this.itemState !== 'exchange'"
-    (change)="onChange($event.target.value)"
-  >
-    <option
-      *ngFor="let opt of options"
-      [value]="opt.key"
-      [selected]="opt.key === itemState"
-    >
-      {{ opt.value }}
-    </option>
-  </select>
+  <div class="item-card__img">
+    <img src="{{ item.img }}" alt="item-image" />
+  </div>
+
+  <div class="item-card__info">
+    <p class="item-card__info-title">{{ item.title }}</p>
+    <div class="item-card__info-rating">
+      <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+    </div>
+    <div class="item-card__info-drop">
+      <div
+        class="item-card-drop-exchange"
+        *ngIf="this.itemState === 'exchange'"
+      >
+        Already in an exchange
+      </div>
+      <select
+        *ngIf="this.itemState !== 'exchange'"
+        (change)="onChange($event.target.value)"
+      >
+        <option
+          *ngFor="let opt of options"
+          [value]="opt.key"
+          [selected]="opt.key === itemState"
+        >
+          {{ opt.value }}
+        </option>
+      </select>
+    </div>
+  </div>
 </div>

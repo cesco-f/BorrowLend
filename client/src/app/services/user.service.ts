@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { apiUrl } from './apiUrl';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,43 +13,49 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUser(username: string): Observable<User> {
-    return this.http.get<User>(`${this.userUrl}/username/${username}`);
+	getUser(username: string): Observable<any> {
+		return this.http.get<any>(`${this.userUrl}/username/${username}`);
+	}
+
+	getAllUsers(): Observable<User> {
+		return this.http.get<any>(`${this.userUrl}`);
+	}
+
+
+
+	getUserById(userId: number): Observable<any> {
+		return this.http.get<any>(`${this.userUrl}/${userId}`);
   }
 
-  getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(`${this.userUrl}/${userId}`);
-  }
-
-  addToToBorrowList(userId: number, itemId: number): Observable<User> {
-    return this.http.put<User>(
+	addToToBorrowList(userId: number, itemId: number): Observable<any> {
+		return this.http.put<any>(
       `${this.userUrl}/toBorrowListAdd/${userId}/${itemId}`,
       {}
     );
   }
 
-  removeFromToBorrowList(userId: number, itemId: number): Observable<User> {
-    return this.http.put<User>(
+	removeFromToBorrowList(userId: number, itemId: number): Observable<any> {
+		return this.http.put<any>(
       `${this.userUrl}/toBorrowListRem/${userId}/${itemId}`,
       {}
     );
   }
 
-  addToToLendList(userId: number, itemId: number): Observable<User> {
-    return this.http.put<User>(
+	addToToLendList(userId: number, itemId: number): Observable<any> {
+		return this.http.put<any>(
       `${this.userUrl}/toLendListAdd/${userId}/${itemId}`,
       {}
     );
   }
 
-  removeFromToLendList(userId: number, itemId: number): Observable<User> {
-    return this.http.put<User>(
+	removeFromToLendList(userId: number, itemId: number): Observable<any> {
+		return this.http.put<any>(
       `${this.userUrl}/toLendListRem/${userId}/${itemId}`,
       {}
     );
   }
 
-  getUsersLending(itemId: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.userUrl}/lending/${itemId}`);
+	getUsersLending(itemId: number): Observable<any[]> {
+		return this.http.get<any[]>(`${this.userUrl}/lending/${itemId}`);
   }
 }

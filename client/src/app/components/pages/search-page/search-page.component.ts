@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
 import { Item } from 'src/app/models/item';
 import { User } from 'src/app/models/user';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-search-page',
@@ -15,6 +16,7 @@ export class SearchPageComponent implements OnInit {
   items: Item[];
   items$ = this.store.pipe(select('items'));
   itemsToShow = [];
+  search = faSearch;
 
   constructor(private store: Store<AppState>) {}
 

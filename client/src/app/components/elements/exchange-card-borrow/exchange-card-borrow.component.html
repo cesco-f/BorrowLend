@@ -1,49 +1,88 @@
-<div class="exchange-card-borrow">
-  <div class="exchange-card-borrow__users">
-    <div class="exchange-card-borrow__users-1">
-      <p>User borrowing</p>
-      <p>{{ exchange.userBorrowing.username }}</p>
-      <p>{{ exchange.userBorrowing.location }}</p>
-      <p *ngIf="exchange.accepted">{{ exchange.userBorrowing.email }}</p>
-      <p>{{ exchange.itemLent.title }}</p>
+<div class="exchange-card">
+  <div class="exchange-card-users">
+    <div class="exchange-card-users__user">
+      <div class="exchange-card-users__user-username">
+        <span class="bold">Username: </span>
+        <span> {{ exchange.userBorrowing.username + " (You)" }}</span>
+      </div>
+      <div class="exchange-card-users__user-location">
+        <span class="bold">Location: </span>
+        <span> {{ exchange.userBorrowing.location }}</span>
+      </div>
+      <div class="exchange-card-users__user-email">
+        <span class="bold">E-mail: </span>
+        <span *ngIf="exchange.accepted">
+          {{ exchange.userBorrowing.email }}</span
+        >
+        <span *ngIf="!exchange.accepted"> Hidden</span>
+      </div>
+      <div class="exchange-card-users__user-game">
+        <span class="bold">Game owned: </span>
+        <span> {{ exchange.itemLent.title }}</span>
+      </div>
       <img src="{{ exchange.itemLent.img }}" alt="item to lend" />
     </div>
-    <div class="exchange-card-borrow__users-2">
-      <p>User lending</p>
-      <p>{{ exchange.userLending.username }}</p>
-      <p>{{ exchange.userLending.location }}</p>
-      <p *ngIf="exchange.accepted">{{ exchange.userLending.email }}</p>
-      <p>{{ exchange.itemBorrowed.title }}</p>
+    <div class="exchange-card-users__darrow">&#8596;</div>
+    <div class="exchange-card-users__user">
+      <div class="exchange-card-users__user-username">
+        <span class="bold">Username: </span>
+        <span> {{ exchange.userLending.username }}</span>
+      </div>
+      <div class="exchange-card-users__user-location">
+        <span class="bold">Location: </span>
+        <span> {{ exchange.userLending.location }}</span>
+      </div>
+      <div class="exchange-card-users__user-email">
+        <span class="bold">E-mail: </span>
+        <span *ngIf="exchange.accepted"> {{ exchange.userLending.email }}</span>
+        <span *ngIf="!exchange.accepted"> Hidden</span>
+      </div>
+      <div class="exchange-card-users__user-game">
+        <span class="bold">Game owned: </span>
+        <span> {{ exchange.itemBorrowed.title }}</span>
+      </div>
       <img src="{{ exchange.itemBorrowed.img }}" alt="item to borrow" />
     </div>
-    <div *ngIf="exchange.accepted === null">Yellow</div>
-    <div *ngIf="exchange.accepted === true">Green</div>
-    <div *ngIf="exchange.accepted === false">Red</div>
-    <div *ngIf="exchange.accepted === false">Rejected</div>
-    <div *ngIf="exchange.accepted && exchange.isActiveLend === false">
-      Ended by other user
-    </div>
-    <div *ngIf="exchange.accepted && exchange.isActiveBorr === false">
-      Waiting for other user to end
-    </div>
-    <button
-      (click)="deleteExchange()"
-      *ngIf="
-        !exchange.accepted ||
-        (exchange.accepted && exchange.isActiveLend === false)
-      "
-    >
-      Delete
-    </button>
-    <button
-      (click)="endExchange()"
-      *ngIf="
-        exchange.accepted &&
-        exchange.isActiveLend === null &&
-        exchange.isActiveBorr === null
-      "
-    >
-      End
-    </button>
   </div>
+  <div class="exchange-card__status">
+    <span class="bold">Status: </span>
+    <span *ngIf="exchange.accepted" class="accepted"> Accepted</span>
+    <span *ngIf="exchange.accepted === null" class="pending"> Pending</span>
+    <span *ngIf="exchange.accepted === false" class="rejected"> Rejected</span>
+  </div>
+  <div
+    class="exchange-card__info"
+    *ngIf="exchange.accepted && exchange.isActiveLend === false"
+  >
+    {{ "Ended by " + exchange.userLending.username }}
+  </div>
+  <div
+    class="exchange-card__info"
+    *ngIf="exchange.accepted && exchange.isActiveBorr === false"
+  >
+    {{
+      "Waiting for " + exchange.userLending.username + " to end the exchange"
+    }}
+  </div>
+  <button
+    class="deletebutton"
+    (click)="deleteExchange()"
+    *ngIf="
+    !exchange.accepted ||
+    (exchange.accepted && exchange.isActiveLend === false)
+    "
+    >
+    Delete
+  </button>
+  <button
+    class="endbuttontest"
+    (click)="endExchange()"
+    *ngIf="
+      exchange.accepted &&
+      exchange.isActiveLend === null &&
+      exchange.isActiveBorr === null
+    "
+  >
+    End
+  </button>
 </div>

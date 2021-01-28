@@ -1,25 +1,41 @@
-<div class="borrow-page-request">
-  <div class="borrow-page-request__users">
-    <div class="borrow-page-request__users-1" *ngIf="userBorr && itemToLend">
-      <p>User borrowing</p>
-      <p>{{ userBorr.username }}</p>
-      <p>{{ userBorr.location }}</p>
-      <p>{{ itemToLend.title }}</p>
+<div
+  class="request-button"
+  *ngIf="userBorr && userLend && itemToLend && itemToBorrow"
+>
+  <div class="borrow-page-request">
+    <div class="borrow-page-request__user">
+      <div class="borrow-page-request__user-username">
+        <span class="bold">Username: </span>
+        <span> {{ userBorr.username + " (You)" }}</span>
+      </div>
+      <div class="borrow-page-request__user-location">
+        <span class="bold">Location: </span>
+        <span> {{ userBorr.location }}</span>
+      </div>
+      <div class="borrow-page-request__user-game">
+        <span class="bold">Game owned: </span>
+        <span> {{ itemToLend.title }}</span>
+      </div>
       <img src="{{ itemToLend.img }}" alt="item to lend" />
     </div>
-    <div class="borrow-page-request__users-2" *ngIf="userLend && itemToBorrow">
-      <p>User lending</p>
-      <p>{{ userLend.username }}</p>
-      <p>{{ userLend.location }}</p>
-      <p>{{ itemToBorrow.title }}</p>
+    <div class="borrow-page-request__darrow">&#8596;</div>
+    <div class="borrow-page-request__user">
+      <div class="borrow-page-request__user-username">
+        <span class="bold">Username: </span>
+        <span> {{ userLend.username }}</span>
+      </div>
+      <div class="borrow-page-request__user-location">
+        <span class="bold">Location: </span>
+        <span> {{ userLend.location }}</span>
+      </div>
+      <div class="borrow-page-request__user-game">
+        <span class="bold">Game owned: </span>
+        <span> {{ itemToBorrow.title }}</span>
+      </div>
       <img src="{{ itemToBorrow.img }}" alt="item to borrow" />
     </div>
   </div>
   <button (click)="createExchange()" class="borrow-page-request__send">
-    Send request
+    Create
   </button>
-  <div *ngIf="exchangeStatus !== null">
-    <div *ngIf="exchangeStatus">Created</div>
-    <div *ngIf="!exchangeStatus">Already in database</div>
-  </div>
 </div>

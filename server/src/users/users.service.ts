@@ -99,21 +99,9 @@ export class UsersService {
     return this.usersRepository.save(user);
   }
 
-  async addToToLendList(id: number, itemId: number): Promise<Users> {
-    const user = await this.usersRepository.findOne(id, {
-      relations: [
-        'exchangesBorr',
-        'exchangesLend',
-        'toLendList',
-        'toBorrowList',
-      ],
-    });
-    const item = await this.itemsService.findOne(itemId);
-    if (
-      user.toLendList.findIndex((toLendItem) => toLendItem.id === item.id) ===
-      -1
-    )
-      user.toLendList = [...user.toLendList, item];
+  async changeEmail(id: number, email: string): Promise<Users> {
+    const user = await this.usersRepository.findOne(id);
+    user.email = email;
 
     return this.usersRepository.save(user);
   }
@@ -148,5 +136,24 @@ export class UsersService {
       (user) => user.toLendList.findIndex((item) => item.id === itemId) !== -1,
     );
     return users;
+  }
+
+  async addToToLendList(id: number, itemId: number): Promise<Users> {
+    const user = await this.usersRepository.findOne(id, {
+      relations: [
+        'exchangesBorr',
+        'exchangesLend',
+        'toLendList',
+        'toBorrowList',
+      ],
+    });
+    const item = await this.itemsService.findOne(itemId);
+    if (
+      user.toLendList.findIndex((toLendItem) => toLendItem.id === item.id) ===
+      -1
+    )
+      user.toLendList = [...user.toLendList, item];
+
+    return this.usersRepository.save(user);
   }
 }

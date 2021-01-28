@@ -1,12 +1,14 @@
 <div class="search-page" *ngIf="user">
-  <input
-    id="search-field"
-    (keyup)="onKey($event)"
-    type=""
-    name="search"
-    placeholder="Search an item..."
-    autocomplete="off"
-  />
+  <div class="search-page__search-wrapper">
+    <fa-icon class="search-page__search-wrapper-icon" [icon]="search"></fa-icon>
+    <input
+      (keyup)="onKey($event)"
+      type=""
+      name="search"
+      placeholder="Search an item..."
+      autocomplete="off"
+    />
+  </div>
   <app-item-card-search
     *ngFor="let item of itemsToShow"
     [user]="user"

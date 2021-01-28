@@ -30,6 +30,9 @@ export class RequestsPageComponent implements OnInit {
             .getExchange(exchange.id)
             .subscribe((exchangeComplete) => {
               this.exchanges.push(exchangeComplete);
+              this.exchanges.sort((a, b) => {
+                return a.createdAt > b.createdAt ? -1 : 1;
+              });
             });
         });
         user.exchangesLend.forEach((exchange) => {
@@ -37,6 +40,9 @@ export class RequestsPageComponent implements OnInit {
             .getExchange(exchange.id)
             .subscribe((exchangeComplete) => {
               this.exchanges.push(exchangeComplete);
+              this.exchanges.sort((a, b) => {
+                return a.createdAt > b.createdAt ? -1 : 1;
+              });
             });
         });
       }

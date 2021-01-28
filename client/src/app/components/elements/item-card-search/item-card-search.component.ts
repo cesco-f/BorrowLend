@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Exchange } from 'src/app/models/exchange';
 import { ExchangeService } from 'src/app/services/exchange.service';
 import { setUser } from '../../../actions/users.actions';
 import { AppState } from '../../../app.state';
@@ -39,36 +38,33 @@ export class ItemCardSearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.checkState(this.user.toBorrowList, 'toborrow');
-    this.checkState(this.user.toLendList, 'tolend');
-
+    if (this.user.toBorrowList.find((item) => item.id === this.item.id)) {
+      this.itemState = 'toborrow';
+    }
+    if (this.user.toLendList.find((item) => item.id === this.item.id)) {
+      this.itemState = 'tolend';
+    }
     if (!this.itemState) {
       this.itemState = 'none';
     }
-
-    this.checkIfInAnExchange(this.user.exchangesBorr);
-    this.checkIfInAnExchange(this.user.exchangesLend);
+    this.user.exchangesBorr.forEach(this.getExchange);
+    this.user.exchangesLend.forEach(this.getExchange);
   }
 
-  checkState(list: Item[], state: string): void {
-    list.forEach((item) => {
-      if (item.id === this.item.id) {
-        this.itemState = state;
-      }
-    });
-  }
+  getExchange = (exchange): void => {
+    this.exchangeService
+      .getExchange(exchange.id)
+      .subscribe(this.checkIfInExchange);
+  };
 
-  checkIfInAnExchange(exchanges: Exchange[]): void {
-    exchanges.forEach((exchange) => {
-      this.exchangeService
-        .getExchange(exchange.id)
-        .subscribe((exchangeComplete) => {
-          if (this.item.id === exchangeComplete.itemBorrowed.id) {
-            this.itemState = 'exchange';
-          }
-        });
-    });
-  }
+  checkIfInExchange = (exchangeComplete): void => {
+    if (
+      exchangeComplete.itemBorrowed.id === this.item.id ||
+      exchangeComplete.itemLent.id === this.item.id
+    ) {
+      this.itemState = 'exchange';
+    }
+  };
 
   onChange(value): void {
     switch (value) {

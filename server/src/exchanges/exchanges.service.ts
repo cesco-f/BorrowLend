@@ -38,8 +38,23 @@ export class ExchangesService {
     if (exchangeAlreadySaved) {
       return null;
     }
-    exchange.userBorrowing = await this.usersService.findOne(userBorrowingId);
-    exchange.userLending = await this.usersService.findOne(userLendingId);
+    exchange.userBorrowing = await this.usersService.remToToBorrowList(
+      userBorrowingId,
+      itemBorrowedId,
+    );
+    exchange.userLending = await this.usersService.remToToLendList(
+      userLendingId,
+      itemBorrowedId,
+    );
+    exchange.userBorrowing = await this.usersService.remToToLendList(
+      userBorrowingId,
+      itemLentId,
+    );
+    exchange.userLending = await this.usersService.remToToBorrowList(
+      userLendingId,
+      itemLentId,
+    );
+
     exchange.itemBorrowed = await this.itemsService.findOne(itemBorrowedId);
     exchange.itemLent = await this.itemsService.findOne(itemLentId);
     exchange.createdAt = new Date();
@@ -59,7 +74,33 @@ export class ExchangesService {
   }
 
   async remove(id: number): Promise<void> {
-    await this.exchangesRepository.delete(id);
+    try {
+      const exchange = await this.exchangesRepository.findOne(id, {
+        relations: ['userBorrowing', 'userLending', 'itemBorrowed', 'itemLent'],
+      });
+
+      await this.usersService.addToToBorrowList(
+        exchange.userBorrowing.id,
+        exchange.itemBorrowed.id,
+      );
+
+      await this.usersService.addToToLendList(
+        exchange.userLending.id,
+        exchange.itemBorrowed.id,
+      );
+      await this.usersService.addToToBorrowList(
+        exchange.userLending.id,
+        exchange.itemLent.id,
+      );
+      await this.usersService.addToToLendList(
+        exchange.userBorrowing.id,
+        exchange.itemLent.id,
+      );
+
+      await this.exchangesRepository.delete(id);
+    } catch (error) {
+      console.log('error :>> ', error);
+    }
   }
 
   async accept(id: number): Promise<Exchanges> {

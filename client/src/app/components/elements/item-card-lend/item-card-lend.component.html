@@ -3,8 +3,16 @@
     item.id
   }}"
 >
-  <div class="item-card">
-    <p>{{ item.title }}</p>
-    <img src="{{ item.img }}" alt="item-image" />
+  <div class="item-card" *ngIf="item">
+    <div class="item-card__img">
+      <img src="{{ item.img }}" alt="item-image" />
+    </div>
+
+    <div class="item-card__info">
+      <p class="item-card__info-title">{{ item.title }}</p>
+      <div class="item-card__info-rating">
+        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+      </div>
+    </div>
   </div>
 </a>

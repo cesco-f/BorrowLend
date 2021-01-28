@@ -1,0 +1,19 @@
+.my-lists-page {
+  display: flex;
+  justify-content: space-around;
+  padding: 3rem;
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60rem;
+
+    & > * {
+      margin-bottom: 3rem;
+    }
+
+    p {
+      font-size: 4rem;
+    }
+  }
+}
