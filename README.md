@@ -6,11 +6,6 @@
 
 BorrowLend is a web app aimed towards enabling users to borrow and lend items like books, games or movies. Each user can add the items that they want to borrow in the "to borrow list" and the item they want to lend in the "to lend list". If there is a match the two users can exchange the items and return them back after a certain amount of time.
 
-## **Screenshots**
-<p align="center">
- <img src='./readme-images/example.png' width="700px">
-</p>
-
 ## **Demo video**
 [![Watch the video](https://img.youtube.com/vi/wgbuKKT4rJ4/maxresdefault.jpg)](https://youtu.be/wgbuKKT4rJ4)
 
