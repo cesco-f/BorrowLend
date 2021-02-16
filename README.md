@@ -12,7 +12,8 @@ BorrowLend is a web app aimed towards enabling users to borrow and lend items li
 </p>
 
 ## **Demo video**
-https://www.youtube.com/watch?v=wgbuKKT4rJ4&ab_channel=FrancescoFagnani
+[![Watch the video](https://img.youtube.com/vi/wgbuKKT4rJ4/maxresdefault.jpg)](https://youtu.be/wgbuKKT4rJ4)
+
 
 ## **Tech Stack**
 ### **Front end**
